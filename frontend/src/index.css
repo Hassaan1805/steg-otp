@@ -13,9 +13,10 @@
 body {
   margin: 0;
   font-family: "Segoe UI", "Trebuchet MS", sans-serif;
-  background: radial-gradient(circle at 0% 0%, #16254b, transparent 40%),
-    radial-gradient(circle at 100% 20%, #10323d, transparent 30%),
-    #070b14;
+  background: radial-gradient(circle at 14% 12%, rgba(233, 69, 245, 0.18), transparent 38%),
+    radial-gradient(circle at 84% 16%, rgba(111, 111, 111, 0.22), transparent 36%),
+    linear-gradient(140deg, #e945f5 0%, #6f6f6f 52%, #6a6a6a 100%);
+  background-attachment: fixed;
 }
 
 @layer components {
@@ -24,7 +25,8 @@ body {
   }
 
   .tab-btn-active {
-    @apply bg-cyan-500/20 text-cyan-100 shadow-glow;
+    @apply text-fuchsia-100 shadow-glow;
+    background-color: rgba(233, 69, 245, 0.22);
   }
 
   .form-label {
@@ -36,7 +38,7 @@ body {
   }
 
   .text-input:focus {
-    @apply border-cyan-500 shadow-glow;
+    @apply border-accent shadow-glow;
   }
 
   .file-input {
@@ -44,7 +46,13 @@ body {
   }
 
   .primary-btn {
-    @apply inline-flex items-center justify-center rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-500/30 disabled:cursor-not-allowed disabled:opacity-70;
+    @apply inline-flex items-center justify-center rounded-lg border px-4 py-2 text-sm font-semibold text-fuchsia-100 transition disabled:cursor-not-allowed disabled:opacity-70;
+    border-color: rgba(233, 69, 245, 0.6);
+    background-color: rgba(233, 69, 245, 0.2);
+  }
+
+  .primary-btn:hover {
+    background-color: rgba(233, 69, 245, 0.3);
   }
 
   .secondary-btn {
@@ -60,7 +68,7 @@ body {
   width: 56px;
   height: 56px;
   border: 3px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #33d1ff;
+  border-top-color: #e945f5;
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }

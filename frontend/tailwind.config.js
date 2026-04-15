@@ -4,15 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#070b14",
-        panel: "#101826",
-        panelSoft: "#162238",
-        accent: "#33d1ff",
-        accent2: "#86efac",
+        bg: "#121019",
+        panel: "#1a1623",
+        panelSoft: "#201b2b",
+        accent: "#e945f5",
+        accentMid: "#6f6f6f",
+        accentEnd: "#6a6a6a",
         warn: "#f87171",
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(51, 209, 255, 0.2), 0 10px 35px rgba(10, 20, 40, 0.5)",
+        glow: "0 0 0 1px rgba(233, 69, 245, 0.28), 0 14px 42px rgba(40, 20, 50, 0.52)",
       },
       keyframes: {
         floatIn: {

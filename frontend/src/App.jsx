@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import FloatingLines from "./components/FloatingLines";
+import StarBorder from "./components/StarBorder";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
 
@@ -145,10 +147,25 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-bg via-slate-950 to-black text-slate-100">
-      <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-        <header className="animate-floatIn rounded-2xl border border-cyan-900/50 bg-panel/90 p-6 shadow-glow backdrop-blur">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300/80">Secure Visual Crypto</p>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-accent/18 via-bg to-accentEnd/45 text-slate-100">
+      <div className="pointer-events-none absolute inset-0 opacity-75">
+        <FloatingLines
+          enabledWaves={["top", "middle", "bottom"]}
+          lineCount={[10, 14, 18]}
+          lineDistance={[8, 6, 4]}
+          linesGradient={["#e945f5", "#6f6f6f", "#6a6a6a"]}
+          bendRadius={5.0}
+          bendStrength={-0.5}
+          interactive={true}
+          parallax={true}
+          parallaxStrength={0.16}
+          mixBlendMode="screen"
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+        <header className="animate-floatIn rounded-2xl border border-accent/35 bg-panel/90 p-6 shadow-glow backdrop-blur">
+          <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-200/85">Secure Visual Crypto</p>
           <h1 className="mt-2 text-2xl font-semibold sm:text-3xl">Image Steganography with OTP Encryption</h1>
           <p className="mt-3 max-w-3xl text-sm text-slate-300">
             Encrypt a message using a one-time pad, then hide the encrypted binary data inside image pixels using LSB.
@@ -156,7 +173,7 @@ function App() {
           </p>
         </header>
 
-        <div className="mt-8 flex gap-2 rounded-xl bg-panelSoft/80 p-1">
+        <div className="mt-8 flex gap-2 rounded-xl border border-accent/20 bg-panelSoft/85 p-1">
           <button
             className={`tab-btn ${tab === "encode" ? "tab-btn-active" : ""}`}
             onClick={() => {
@@ -184,14 +201,14 @@ function App() {
             className={`mt-6 rounded-xl border p-3 text-sm ${
               status.type === "error"
                 ? "border-red-500/40 bg-red-500/10 text-red-200"
-                : "border-emerald-400/40 bg-emerald-400/10 text-emerald-100"
+                : "border-accent/45 bg-accent/12 text-fuchsia-100"
             }`}
           >
             {status.text}
           </div>
         ) : null}
 
-        <main className="mt-6 animate-floatIn rounded-2xl border border-slate-800 bg-panel p-5 shadow-glow sm:p-6">
+        <main className="mt-6 animate-floatIn rounded-2xl border border-accentMid/45 bg-panel p-5 shadow-glow sm:p-6">
           {tab === "encode" ? (
             <form onSubmit={handleEncode} className="space-y-5">
               <label className="block">
@@ -219,14 +236,22 @@ function App() {
                 <span className="mt-1 block text-xs text-slate-400">Characters: {charCount}</span>
               </label>
 
-              <button type="submit" disabled={loading} className="primary-btn">
+              <StarBorder
+                as="button"
+                type="submit"
+                disabled={loading}
+                className="w-full"
+                color="#e945f5"
+                speed="5s"
+                thickness={1.4}
+              >
                 {loading ? "Encoding..." : "Encode and Hide Message"}
-              </button>
+              </StarBorder>
 
               {generatedOtpKey ? (
-                <section className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-4">
-                  <p className="text-sm font-semibold text-cyan-200">Generated OTP Key</p>
-                  <p className="mt-2 break-all rounded-md bg-black/30 p-3 text-xs text-cyan-100">{generatedOtpKey}</p>
+                <section className="rounded-xl border border-accent/40 bg-accent/14 p-4">
+                  <p className="text-sm font-semibold text-fuchsia-100">Generated OTP Key</p>
+                  <p className="mt-2 break-all rounded-md bg-black/30 p-3 text-xs text-fuchsia-50">{generatedOtpKey}</p>
                   <button
                     className="secondary-btn mt-3"
                     type="button"
@@ -238,11 +263,19 @@ function App() {
               ) : null}
 
               {encodedImageUrl ? (
-                <section className="space-y-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4">
+                <section className="space-y-3 rounded-xl border border-accentMid/55 bg-accentMid/20 p-4">
                   <img src={encodedImageUrl} alt="Encoded preview" className="preview-img" />
-                  <a className="primary-btn inline-block text-center" href={encodedImageUrl} download="encoded_image.png">
+                  <StarBorder
+                    as="a"
+                    href={encodedImageUrl}
+                    download="encoded_image.png"
+                    className="w-full"
+                    color="#6f6f6f"
+                    speed="6s"
+                    thickness={1.4}
+                  >
                     Download Encoded Image
-                  </a>
+                  </StarBorder>
                 </section>
               ) : null}
             </form>
@@ -272,14 +305,22 @@ function App() {
                 />
               </label>
 
-              <button type="submit" disabled={loading} className="primary-btn">
+              <StarBorder
+                as="button"
+                type="submit"
+                disabled={loading}
+                className="w-full"
+                color="#e945f5"
+                speed="5s"
+                thickness={1.4}
+              >
                 {loading ? "Decoding..." : "Decode Message"}
-              </button>
+              </StarBorder>
 
               {decodedMessage ? (
-                <section className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4">
-                  <p className="text-sm font-semibold text-emerald-100">Decoded Message</p>
-                  <p className="mt-2 whitespace-pre-wrap rounded-md bg-black/30 p-3 text-sm text-emerald-50">
+                <section className="rounded-xl border border-accentEnd/55 bg-accentEnd/25 p-4">
+                  <p className="text-sm font-semibold text-slate-100">Decoded Message</p>
+                  <p className="mt-2 whitespace-pre-wrap rounded-md bg-black/30 p-3 text-sm text-slate-100">
                     {decodedMessage}
                   </p>
                   <button
